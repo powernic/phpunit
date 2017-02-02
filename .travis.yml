@@ -4,4 +4,5 @@ php:
 deploy:
   provider: script
   script: phpunit --configuration phpunit.xml --coverage-text
-  after_success: echo "Hello"
+  skip_cleanup: true
+after_success: echo "Hello"
