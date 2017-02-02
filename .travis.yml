@@ -4,7 +4,7 @@ php:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ssh -p 22 $DEPLOY_USER@$HostEncrypt 'sudo touch /var/www/travis/file.txt'
+  script: ssh -p 22 -o StrictHostKeyChecking=no $DEPLOY_USER@$HostEncrypt 'sudo touch /var/www/travis/file.txt'
   on:
     branch: master
 before_deploy:
@@ -12,8 +12,6 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/key_deploy
   - ssh-add /tmp/key_deploy
-before_script:
-  - echo -e "Host $HostEncrypt*\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 addons:
   ssh_known_hosts: $HostEncrypt
 env:
