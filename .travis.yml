@@ -5,9 +5,8 @@ deploy:
   provider: script
   script: phpunit --configuration phpunit.xml --coverage-text
   skip_cleanup: true
-after_success: 
-before_install:
-  - openssl aes-256-cbc -k "$super_secret_password" -in test.txt.enc -out test.txt -dd
 env:
   global:
-    secure: J3Im1CmC9WyKnOQ3Si+SBidmVNGL6za/reTDc3TCV1VNbvkA1tK8k5tU+pTZYYrYpuyFVT6aCs2ZYMaSUbcqiiBRIaPG5nxGbORHHOA8q7QskylXermoXBMKAk22hUssb/sOIvtXuUAlwcWGoFD+VqKCsijy7lGHcnb49uPE+413DI5cwm/fuE2WLTiRE/bkShr9JKddDKHS4I9pEz4wYq3L7CsPSjxgS3tc7xC2yTaLh3btOyUWNdDi5YIHphMEeyUKlMtXJprwmGESX4tDYzBxe963rYnt1R79pv9gn7wxfR6cDs0YABmTcqgs3YQfwjWpLMDQYrkE346/gQTMbljnybQdlcWmsbLkOd3JWeL0/2a5FGdamwic6NoXPes6g5Kkf1jKApOCmHGCZERvAInZh73oRfqx7woZBid3J428CclRXl4qtm7OSdI9CWrzezoquMltzIiZ/5W47kNoNS6vVe24+yap7CoWOzaT8KMkNpxDGN6Rvtf3i3KuCYm9HjcPulzgdfakuGbsch97YBuwZuIpDu/mWZ37ntdGOl/r8r8EMpRPzu75Z7HDPVkMRV+bOYwtQh1/71imJvlz/S3ggt+G+c5yVLfw6Mt0NyEOdlS/VXfePomv2Md/mnge7jrND7atbbZENmvVCBir6spz+x5dK9AzLCFXwLzOlok=
+    secure: RjppQcYe+ISqHJ//MyKhXNwJcnad1e8SgdaOhHUJF/1KjKHCfmGXO4XyWfjru6swK1k3ViD5QN0074NE+R+VDLdxOjkzYkzYyQneTaxXJic+9SPgCZHSNOCdfDYUR5uVQdjEq4QdUc2Vg1scu09F2MNNtyQ2tWyMCarL1yyXU9PH0r+7BIqDtnIMvnlD2PV73HCGejfMDCIxCgEzEF0X1dVALTyR/iZ/msM9P/lKXqhil0Mm4lh1a2YsrCT4ReGszmmpMxbt/Q/AGyIovF2noTapuuWhpF2QjQmRFd9vl99yXn1FY6Rn6KQQ/5sJHDnNAVn/FaqVxPIS5Ph0Wv6oLJlNalyD+UDau75FbuAh2FkBcAFi1Hq37jmpSFbiXgal2tGOGrx+i0VDlVu3iVWRs/9Cd0FRgvo3KwBMAkj8YxVeRvKOHeV/0i+bQs5Yf2wzjHFL9rGEqmS/hRgvDgFLCshw+Wl3WWJZtbj5spo230vdw9ImSIPJPJ7R++H0Fxe3QDqkM64myvRntfuGCOS2KWiQHLlZOoITpEGk3cLI0Yd3P/dmlhDyS9oDNeoDfRftv2dtJV+0DMsdgZQhsZUnyT0x3LCBtxU4F2yG1+F3MO9NXb/tURcVgZLcrba8JPNObZEs4MO+nCy+PP0rojdM2jydC41POVmIcpRZPpzc3Og=
+before_install:
+  - openssl aes-256-cbc -k "$super_secret_password" -in super_secret.txt.enc -out super_secret.txt -d
