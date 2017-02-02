@@ -4,7 +4,7 @@ php:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ssh -p 22 -o StrictHostKeyChecking=no $DEPLOY_USER@$HostEncrypt cd /var/www/travis/ && sudo git clone https://github.com/powernic/phpunit.git .
+  script: ssh -p 22 -o StrictHostKeyChecking=no $DEPLOY_USER@$HostEncrypt cd /var/www/travis/ && sudo git pull
   on:
     branch: master
 before_deploy:
