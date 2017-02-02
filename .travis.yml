@@ -4,18 +4,19 @@ php:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ssh -p 22 -o StrictHostKeyChecking=no $DEPLOY_USER@$HostEncrypt 'sudo git clone https://github.com/powernic/phpunit.git .'
+  script: ssh -p 22 -o StrictHostKeyChecking=no $DEPLOY_USER@$HostEncrypt 'cd $DEPLOY_DEST && sudo git clone https://github.com/powernic/phpunit.git .'
   on:
     branch: master
 before_deploy:
-  - openssl aes-256-cbc -k "$KeyEncrypt" -in key_deploy.enc -out /tmp/key_deploy -d
-  - eval "$(ssh-agent -s)"
-  - chmod 600 /tmp/key_deploy
-  - ssh-add /tmp/key_deploy
+- openssl aes-256-cbc -k "$KeyEncrypt" -in key_deploy.enc -out /tmp/key_deploy -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/key_deploy
+- ssh-add /tmp/key_deploy
 addons:
-  ssh_known_hosts: $HostEncrypt
+  ssh_known_hosts: "$HostEncrypt"
 env:
   global:
   - secure: BjcjSNGhuT1TQkz3uoLtnpq6VAILD8dMeYGlS8sD94x4+Y4NG5djNNpL/XniLwu5kZ3DKzxVrwKvZp3t8KWK8z6O64EkDZSkurgeMAZkSaETCTqeB2SEHb4HErbrj5L2uhZzeDwDEHOVoLaIVEyzFieHLTAwfRVQgNTZcwbQjAl2UXybMs0PMzBjofxA+getj87h8I5aUx2fzbXew9QOdP9VGM9yUjl+ZvDcYEEgbau2b2jMCQf2QyZvGatn0imthMUMpceCT6rYl6PFTyVddPxKZQbKXEq2JN8nlQOjwm4F5uZaDkXyfCdOelKgcNw3GEefE/H/T3dyZ+7tYIs32jnmVQXCDW/uMim6qBT9z+zzdtvER5uCq2pp9pNaJbfpYsG0s93CC0mnKjJXdOYrhdANy0Hu+aRuTXNe9jeR7qUG1AFpBZMRqB77ByjLSVyvPTgsbfPo8Gs93dvkwufrkjFf4/nLotO2PPazFEFYo7rgJjTogPB6K+1c8IzVLwc0egGZmARjlxA6PYz3NQh/HwzWHnrkEwxBf36glbkSx9n0lIiv1b+r8yR90SRSMRE5iSiUALpteYKMKBHelh8qElTbED6yzqPxfkeBp3Y4GUF1J7ZzLA3budprXxDFPz1gCKcPLpg9/8b2us9EFsxAko7R/c3QWPe3j64T3ozfRG4=
   - secure: TpXV5jq8WssHIiBu7jOYMpSgoqfMYRJ9WOFgJ4D21ilXMAusCQFi+gJioMJ+wRdgFKouwdXA8JOucinnUnN9vznNuHNHYmt+ke6+zfnbtGeeMVAiT9G3AzZYE7TnpDwHMhAsVF1Y7pwRdvAfAtUBJfVUJvOfkcQbWANk167eaL0sqrHyp4wVmezKMdpSY/4XIGmhGkgSChzA0mrQ4Zc8E2auzNL5tObebpIrwnTCQK3+NYGMowpnKMa3BUqlZZJ6ye8JuLdxv9jPoDJsaVtY3qrZqQ8l+RnjUCo7hauTCdG24BbMIosF1MRXSkynIXPaME/XZUcHPqbUEm6Dn0znLxVjREW+T5Y7QW7n1l6F52ds+JRtn2kfZK7t2NP9hfv5OxfsYahYZHWOI6RMFQj5kNTksIcli0BTDn1dfy1i13k5Es/QK1nXhNIopahnA46wYjnpMlm3iDM/gAhEfA7x7HJQlYlVXGGIOUe1U70UhSZ4oPGxZulwhGKw3GrSnV1moD95ELWEVMZJMEeiNlC1SfoUE0iJfEtdvCV5PktDdQ0K4y1qSGgi5ZpcjTOIhxNq6AeylMfkKKj1D0PdtM+sk4VUov+ne2WDC4EcirIxEMe848MaOGfR8xR6Yg0miE8SKgwkjteZFgRDRWS7YJIQNTgZULHgjKLJiLpjtVQGQmg=
   - secure: FvPqHur8wMcSWsXyiJY1fWbBwFmyR5cvW1IMN3rAbaoMwyz2R4jq3ZWW7oEVtF8r1Rh+AFMP1xF0Ft9fmoPosdI5DW2NlT8pc/f/oMscD6sZx3Vxyv+N1zfnohwEMV/dxZKv2CU42YJbMh47lLLZrzET+e9CvYbSLl+dUH6BNneN0s6/oCFimgUk7dx9j6iOeO+OxuM86hW3s8JnTaLpAop/8h86PNIHYk3q1/39M6gVbHX7kfVtlcycwihSXcBSb8zbq+4swXCkPn1GCXwWG6xtkb7MNB+UOb6J7+HqbqWv5aBN4oHXuNvyuhyeewJif4Ft1zkSfOyJ2ZcuuI578sv/+ZGQVOxKh2BvC7Sy6KfFogPNy/kdn9vpIiypwobMoPSQtl5SMV2QpWnB1BNqOgRC7GcvKkIKpCdkVuaqk1Pbq5GINSiGnYSLfn9NakkKLxbQU5N32RYAH+068oj2EhPRkR8KKW/k4LuUl8/Ctnwqw/ZhJO+C5SUlqbYirxLM+AA0taaUe0cE3ZChFXfRblr7o9oKfix/Xwh6jglPnYRai7bU/SyLiGhVMFy5C09MG9zNctegZsMG4CEc8iqSMT0pGHmftulxTVqaPk+sSvaGiVyjDRGiLbpeF1mCzUN2uJNmhY+imn60B5TYJNS60kmGwnZNtE48D1N/nTQ2rEY=
+  - secure: idPWMFyKJh4MLkGV4NAYPZBqmWBdy2kBcECxU3oYzXia3wQ2qogCGTV33/nF8XrsDtiCQwqp0aBIzrCc1y8WWpzt8llvMnzZdoYKzcGSbTMeVyqNSxPeogTzwdU3sojA3RBZOqg5clHBWuhoVdEQvl09KkMXBcZFJOfLcnilYGFaBZhG5uROHzQOxLXZfQNZPyGzK9wtHQazQ6XvfEyJ/XvGlSvbd2FrIjK1GRGxczar86rurDidb+Sb8WN9dWzz4dxxhFgmJsw9LxVBs9++l2KAwmaO0CJalMs0c1wiMO/5rPhnB3iiMQXWDPaVsY+KwzT56Ntck2lbhH22nad2c3tPXE+JF4F76iJvu3GUJia9DGRe35VS2Y8EiMYnaRxdTeIXDoYLe6vTX4xz82Z0n3n8vvMmecgKBFpGmL9gp5bhMCglGFwT9be6wJxzOoJqJiE7O5mrwcu/7w/aOSNM+4MZiPzEyYDgR+TFMdRB1686a6lfdGj4jVyfkR/UvEFiUPOeqclARREg3niUSxEv1fKpV7GnYipz0ZtRAOMERSPSPSjtRxcBpOBz0jX5T5f9KTc21hCYK+nv6ZOqq2+ivplaXZYMGYXz1UJyRY6txfrbotfEzniWjpYS/QnTAuWwK+d/G4xpNu1oLQltesOoBG8sggJ4IZaxhYU5N0t6S2M=
