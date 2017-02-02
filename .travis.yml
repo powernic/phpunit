@@ -1,8 +1,11 @@
 language: php
 php:
- - '7.0'
+- '7.0'
 deploy:
   provider: script
   script: phpunit --configuration phpunit.xml --coverage-text
   skip_cleanup: true
-after_success: echo "Hello"
+after_success: 
+before_install:
+- openssl aes-256-cbc -K $encrypted_6f3fc4089059_key -iv $encrypted_6f3fc4089059_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
