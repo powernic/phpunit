@@ -4,14 +4,14 @@ php:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ssh -p 22 $DEPLOY_USER@$HostEncrypt sudo touch file.txt
+  script: ssh -p 22 $DEPLOY_USER@$HostEncrypt 'sudo touch /var/www/travis/file.txt'
   on:
     branch: master
 before_deploy:
-- openssl aes-256-cbc -k "$KeyEncrypt" -in key_deploy.enc -out /tmp/key_deploy -d
-- eval "$(ssh-agent -s)"
-- chmod 600 /tmp/key_deploy
-- ssh-add /tmp/key_deploy
+  - openssl aes-256-cbc -k "$KeyEncrypt" -in key_deploy.enc -out /tmp/key_deploy -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/key_deploy
+  - ssh-add /tmp/key_deploy
 addons:
   ssh_known_hosts: "$HostEncrypt"
 env:
