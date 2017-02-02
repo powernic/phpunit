@@ -8,12 +8,12 @@ deploy:
   on:
     branch: master
 before_deploy:
-- openssl aes-256-cbc -k "$KeyEncrypt" -in key_deploy.enc -out /tmp/key_deploy -d
-- eval "$(ssh-agent -s)"
-- chmod 600 /tmp/key_deploy
-- ssh-add /tmp/key_deploy
+  - openssl aes-256-cbc -k "$KeyEncrypt" -in key_deploy.enc -out /tmp/key_deploy -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/key_deploy
+  - ssh-add /tmp/key_deploy
 addons:
-  ssh_known_hosts: "$HostEncrypt"
+  ssh_known_hosts: $HostEncrypt
 env:
   global:
   - secure: BjcjSNGhuT1TQkz3uoLtnpq6VAILD8dMeYGlS8sD94x4+Y4NG5djNNpL/XniLwu5kZ3DKzxVrwKvZp3t8KWK8z6O64EkDZSkurgeMAZkSaETCTqeB2SEHb4HErbrj5L2uhZzeDwDEHOVoLaIVEyzFieHLTAwfRVQgNTZcwbQjAl2UXybMs0PMzBjofxA+getj87h8I5aUx2fzbXew9QOdP9VGM9yUjl+ZvDcYEEgbau2b2jMCQf2QyZvGatn0imthMUMpceCT6rYl6PFTyVddPxKZQbKXEq2JN8nlQOjwm4F5uZaDkXyfCdOelKgcNw3GEefE/H/T3dyZ+7tYIs32jnmVQXCDW/uMim6qBT9z+zzdtvER5uCq2pp9pNaJbfpYsG0s93CC0mnKjJXdOYrhdANy0Hu+aRuTXNe9jeR7qUG1AFpBZMRqB77ByjLSVyvPTgsbfPo8Gs93dvkwufrkjFf4/nLotO2PPazFEFYo7rgJjTogPB6K+1c8IzVLwc0egGZmARjlxA6PYz3NQh/HwzWHnrkEwxBf36glbkSx9n0lIiv1b+r8yR90SRSMRE5iSiUALpteYKMKBHelh8qElTbED6yzqPxfkeBp3Y4GUF1J7ZzLA3budprXxDFPz1gCKcPLpg9/8b2us9EFsxAko7R/c3QWPe3j64T3ozfRG4=
