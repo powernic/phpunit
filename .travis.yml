@@ -5,6 +5,7 @@ deploy:
   provider: script
   script: phpunit --configuration phpunit.xml --coverage-text
   skip_cleanup: true
+after_success: cat super_secret.txt
 env:
   global:
     secure: RjppQcYe+ISqHJ//MyKhXNwJcnad1e8SgdaOhHUJF/1KjKHCfmGXO4XyWfjru6swK1k3ViD5QN0074NE+R+VDLdxOjkzYkzYyQneTaxXJic+9SPgCZHSNOCdfDYUR5uVQdjEq4QdUc2Vg1scu09F2MNNtyQ2tWyMCarL1yyXU9PH0r+7BIqDtnIMvnlD2PV73HCGejfMDCIxCgEzEF0X1dVALTyR/iZ/msM9P/lKXqhil0Mm4lh1a2YsrCT4ReGszmmpMxbt/Q/AGyIovF2noTapuuWhpF2QjQmRFd9vl99yXn1FY6Rn6KQQ/5sJHDnNAVn/FaqVxPIS5Ph0Wv6oLJlNalyD+UDau75FbuAh2FkBcAFi1Hq37jmpSFbiXgal2tGOGrx+i0VDlVu3iVWRs/9Cd0FRgvo3KwBMAkj8YxVeRvKOHeV/0i+bQs5Yf2wzjHFL9rGEqmS/hRgvDgFLCshw+Wl3WWJZtbj5spo230vdw9ImSIPJPJ7R++H0Fxe3QDqkM64myvRntfuGCOS2KWiQHLlZOoITpEGk3cLI0Yd3P/dmlhDyS9oDNeoDfRftv2dtJV+0DMsdgZQhsZUnyT0x3LCBtxU4F2yG1+F3MO9NXb/tURcVgZLcrba8JPNObZEs4MO+nCy+PP0rojdM2jydC41POVmIcpRZPpzc3Og=
