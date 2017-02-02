@@ -3,12 +3,6 @@ php:
 - '7.0'
 deploy:
   provider: script
-  script: phpunit --configuration phpunit.xml --coverage-text
-  skip_cleanup: true
-  on:
-    branch: master
-deploy:
-  provider: script
   skip_cleanup: true
   script: ssh -p 22 $DEPLOY_USER@$HostEncrypt sudo touch file.txt
   on:
