@@ -13,7 +13,7 @@ before_deploy:
   - chmod 600 /tmp/key_deploy
   - ssh-add /tmp/key_deploy
 before_script:
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
+  - echo -e "Host $HostEncrypt*\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 addons:
   ssh_known_hosts: $HostEncrypt
 env:
