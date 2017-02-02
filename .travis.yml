@@ -12,6 +12,7 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/key_deploy
   - ssh-add /tmp/key_deploy
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 addons:
   ssh_known_hosts: $HostEncrypt
 env:
