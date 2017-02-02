@@ -7,5 +7,7 @@ deploy:
   skip_cleanup: true
 after_success: 
 before_install:
-- openssl aes-256-cbc -K $encrypted_6f3fc4089059_key -iv $encrypted_6f3fc4089059_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+-openssl aes-256-cbc -k "$super_secret_password" -in test.txt.enc -out test.txt -dd
+env:
+  global:
+    secure: J3Im1CmC9WyKnOQ3Si+SBidmVNGL6za/reTDc3TCV1VNbvkA1tK8k5tU+pTZYYrYpuyFVT6aCs2ZYMaSUbcqiiBRIaPG5nxGbORHHOA8q7QskylXermoXBMKAk22hUssb/sOIvtXuUAlwcWGoFD+VqKCsijy7lGHcnb49uPE+413DI5cwm/fuE2WLTiRE/bkShr9JKddDKHS4I9pEz4wYq3L7CsPSjxgS3tc7xC2yTaLh3btOyUWNdDi5YIHphMEeyUKlMtXJprwmGESX4tDYzBxe963rYnt1R79pv9gn7wxfR6cDs0YABmTcqgs3YQfwjWpLMDQYrkE346/gQTMbljnybQdlcWmsbLkOd3JWeL0/2a5FGdamwic6NoXPes6g5Kkf1jKApOCmHGCZERvAInZh73oRfqx7woZBid3J428CclRXl4qtm7OSdI9CWrzezoquMltzIiZ/5W47kNoNS6vVe24+yap7CoWOzaT8KMkNpxDGN6Rvtf3i3KuCYm9HjcPulzgdfakuGbsch97YBuwZuIpDu/mWZ37ntdGOl/r8r8EMpRPzu75Z7HDPVkMRV+bOYwtQh1/71imJvlz/S3ggt+G+c5yVLfw6Mt0NyEOdlS/VXfePomv2Md/mnge7jrND7atbbZENmvVCBir6spz+x5dK9AzLCFXwLzOlok=
